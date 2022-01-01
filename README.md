@@ -1,6 +1,6 @@
 # full-stack-web-development-svelte
 Project: Tutorial from FreeCodeCamp on Full Stack Web Development
-
+https://www.youtube.com/watch?v=OUzaUJ3gEug&t=2190s
 
 ## Gitpod
 - either `gitpod.io/#` in front of the repo url
@@ -12,6 +12,9 @@ The difference is the latter one creates the work environment in another window
 
 ### Permissions
 On top of `user:email`, we also need to enable `read:user`, `public_repo`, `repo`. (Browser Extension)
+
+###  Projects
+https://gitpod.io/projects
 
 ## Svelte Kit
 URL: https://kit.svelte.dev/
