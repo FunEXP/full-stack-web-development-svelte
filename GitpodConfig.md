@@ -9,6 +9,7 @@ Whenever we run a new workspace, we have to run the commands. Hence:
 
 `ports`
 - onOpen: to automatically open as browser
+In order to the browser to automatically pop up, you need to configrue settings: https://www.gitpod.io/docs/configure/browser-settings#pop-ups-2
 
 ### Fixing the hot reloading, vite
 On inspection of the opened browser, `vite` has issues connecting. SvelteKit uses `vite` to do hot reloading however by default `vite` runs on `localhost:3000` but the opened browser url is https and no specified port. 
