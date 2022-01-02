@@ -17,7 +17,11 @@ On inspection of the opened browser, `vite` has issues connecting. SvelteKit use
 Hence we need to modify the `svelte.config.js`. Note that the url is changing per workspace, and we have the command `gp url` to get the current url. The workspace url has `3000-` hence the command is `gp url 3000`. The command is provided by GitPod.
 The given url is then required as host and port as `443`. However, note again this is for gitpod. Thus we also need to modify `.gitpod.yml` to specify the environment variable `HMR_HOST`.
 
-In `svelte.config.js`, we can then check if the host is GITPOD, and if it is not use localhost. One last thing is the `host` doesn't want `https://` and so forth. Thus we need to substitute the string/
+In `svelte.config.js`, we can then check if the host is GITPOD, and if it is not use localhost. One last thing is the `host` doesn't want `https://` and so forth. Thus we need to substitute the string.
+
+### Extensions
+From Marketplace, Svelte for VS Code (settings to add to `.gitpod.yml`)
+`vscode`: the enxtension is automatically added for us.
 
 # Testing
 To test, create a draft PR and run the gitpod button. This work environment would have the changes and you will see it automatically runs the application on `localhost:3000`
