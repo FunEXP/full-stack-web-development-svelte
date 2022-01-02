@@ -23,6 +23,10 @@ In `svelte.config.js`, we can then check if the host is GITPOD, and if it is not
 From Marketplace, Svelte for VS Code (settings to add to `.gitpod.yml`)
 `vscode`: the enxtension is automatically added for us.
 
+### Github prebuilds
+Everytime our main branch changes, we want to automatically run the init script so `master: true`
+Same for branches and pull requests
+
 # Testing
 To test, create a draft PR and run the gitpod button. This work environment would have the changes and you will see it automatically runs the application on `localhost:3000`
 
