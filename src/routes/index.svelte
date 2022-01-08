@@ -1,5 +1,29 @@
-<script>
+<script context="module" lang="ts">
+// Only run once for all instances
+// Where we want to fetch data from the backend API
+    import type {Load} from "@sveltejs/kit"
+    export const load = async ({ fetch }) => {
+        const res = await fetch("/todos.json");
+        if (res.ok){
+            const todos = await res.json();
+            return{
+                props: { todos }
+            }
+        }
+
+        const { message } = await res.json();
+        return{
+            error: new Error(message)
+            // automatically render error page
+        }
+    };
+</script>
+
+
+<script lang="ts">
     import TodoItem from "$lib/todo-item.svelte";
+
+    export let todos: Todo[];
 
     const title="Todo";
 </script>
@@ -53,5 +77,10 @@
         <input type="text" name="text" aria-label="Add a todo" placeholder="+ tap to add a todo">
     </form>
 
-    <TodoItem/>
+
+    <!-- For loop -->
+    {#each todos as todo}
+        <!-- Only {todo} because todo={todo} is the same -->
+        <TodoItem {todo}/>
+    {/each}
 </div>
