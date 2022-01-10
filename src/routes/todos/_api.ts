@@ -20,13 +20,11 @@ export const api = (request: Request, todo?: Todo) => {
             break;
         case "DELETE":
             todos = todos.filter(todo => todo.uid !== request.params.uid);
-            status=200;
+            status = 200;
             break;
         default:
             break;
     }
-
-    console.log("The method:"+request.method.toUpperCase());
 
     if (request.method.toUpperCase() !== "GET"){
         return {

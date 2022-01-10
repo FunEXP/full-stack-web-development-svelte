@@ -16,3 +16,5 @@ Or a page if it ends in `.svelte`
 
 For helper class,
 If however the file starts with `_` the routes directory ignores it and does not create a route for it.
+
+For the `todos` folder, there is a `[uid]` file which corresponds to the changing url

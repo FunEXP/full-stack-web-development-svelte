@@ -5,7 +5,6 @@ import {api} from "./_api";
 // @Path("todos.json")
 export const get: RequestHandler = (request) => {
 
-
     // Always have this else will have 404
     // return {
     //     status: 200,
