@@ -11,6 +11,7 @@ export const del: RequestHandler = (request) => {
 
 export const patch: RequestHandler<{}, FormData> = (request) => {
     return api(request, {
-        text: request.body.get("text")  //Remember that the input field needs to have the same name "text"
+        text: request.body.get("text"),  //Remember that the input field needs to have the same name "text"
+        done: request.body.has("done")? !!request.body.get("done") : undefined // we need !!  because https://stackoverflow.com/questions/29312123/how-does-the-double-exclamation-work-in-javascript
     });
 }
