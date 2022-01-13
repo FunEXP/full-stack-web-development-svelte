@@ -1,7 +1,10 @@
 <script context="module" lang="ts">
 // Only run once for all instances
 // Where we want to fetch data from the backend API
-    import type {Load} from "@sveltejs/kit"
+    import type {Load} from "@sveltejs/kit";
+    import { enhance } from "$lib/actions/form";
+
+
     export const load = async ({ fetch }) => {
         const res = await fetch("/todos.json");
         if (res.ok){
@@ -73,7 +76,7 @@
 <div class="todos">
     <h1>{title}</h1>
 
-    <form action="/todos.json" method="post" class="new">     <!-- Calls the post api --> 
+    <form action="/todos.json" method="post" class="new" use:enhance>     <!-- Calls the post api --> 
         <input type="text" name="text" aria-label="Add a todo" placeholder="+ tap to add a todo">
     </form>
 
