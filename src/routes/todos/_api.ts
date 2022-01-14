@@ -32,6 +32,7 @@ export const api = (request: Request, data?: Record<string, unknown>) => {
                 return todo;
             });
             status = 200;
+            body = todos.find(todo => todo.uid === request.params.uid); //Returns the updated todo object
             break;
         default:
             break;

@@ -35,6 +35,15 @@
         todos = [...todos, newTodo] //Not sure why todos.push(newTodo) doesn't seem to work with svelte
         form.reset();
     };
+
+    const processUpdatedTodoResult = async (res: Response) => {
+        const updatedTodo = await res.json();
+        todos = todos.map(t => {
+            if(t.uid === updatedTodo.uid) return updatedTodo;
+            return t;
+        })
+    }
+    
 </script>
 
 <!-- To target css styles on this component specifically -->
@@ -91,6 +100,12 @@
     <!-- For loop -->
     {#each todos as todo}
         <!-- Only {todo} because todo={todo} is the same -->
-        <TodoItem {todo}/>
+        <TodoItem 
+            {todo} 
+            processDeletedTodoResult={() => {
+                todos = todos.filter(t => t.uid !== todo.uid);
+            }}
+            {processUpdatedTodoResult}
+        />
     {/each}
 </div>
