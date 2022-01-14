@@ -1,7 +1,10 @@
 <script context="module" lang="ts">
 // Only run once for all instances
 // Where we want to fetch data from the backend API
-    import type {Load} from "@sveltejs/kit"
+    import type {Load} from "@sveltejs/kit";
+    import { enhance } from "$lib/actions/form";
+
+
     export const load = async ({ fetch }) => {
         const res = await fetch("/todos.json");
         if (res.ok){
@@ -26,6 +29,21 @@
     export let todos: Todo[];
 
     const title="Todo";
+
+    const processNewTodoResult = async (res: Response, form: HTMLFormElement) => {
+        const newTodo = await res.json();
+        todos = [...todos, newTodo] //Not sure why todos.push(newTodo) doesn't seem to work with svelte
+        form.reset();
+    };
+
+    const processUpdatedTodoResult = async (res: Response) => {
+        const updatedTodo = await res.json();
+        todos = todos.map(t => {
+            if(t.uid === updatedTodo.uid) return updatedTodo;
+            return t;
+        })
+    }
+    
 </script>
 
 <!-- To target css styles on this component specifically -->
@@ -73,7 +91,8 @@
 <div class="todos">
     <h1>{title}</h1>
 
-    <form action="/todos.json" method="post" class="new">     <!-- Calls the post api --> 
+    <form action="/todos.json" method="post" class="new" use:enhance={{
+        result: processNewTodoResult}}>     <!-- Calls the post api --> 
         <input type="text" name="text" aria-label="Add a todo" placeholder="+ tap to add a todo">
     </form>
 
@@ -81,6 +100,12 @@
     <!-- For loop -->
     {#each todos as todo}
         <!-- Only {todo} because todo={todo} is the same -->
-        <TodoItem {todo}/>
+        <TodoItem 
+            {todo} 
+            processDeletedTodoResult={() => {
+                todos = todos.filter(t => t.uid !== todo.uid);
+            }}
+            {processUpdatedTodoResult}
+        />
     {/each}
 </div>

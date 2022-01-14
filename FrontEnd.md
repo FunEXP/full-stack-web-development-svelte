@@ -18,3 +18,6 @@ For helper class,
 If however the file starts with `_` the routes directory ignores it and does not create a route for it.
 
 For the `todos` folder, there is a `[uid]` file which corresponds to the changing url
+
+# Improvements
+Currently it will reload the whole page, so we want to use svelte actions to send AJAX request
