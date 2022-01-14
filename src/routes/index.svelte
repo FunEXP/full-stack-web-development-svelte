@@ -29,6 +29,12 @@
     export let todos: Todo[];
 
     const title="Todo";
+
+    const processNewTodoResult = async (res: Response, form: HTMLFormElement) => {
+        const newTodo = await res.json();
+        todos = [...todos, newTodo] //Not sure why todos.push(newTodo) doesn't seem to work with svelte
+        form.reset();
+    };
 </script>
 
 <!-- To target css styles on this component specifically -->
@@ -76,7 +82,8 @@
 <div class="todos">
     <h1>{title}</h1>
 
-    <form action="/todos.json" method="post" class="new" use:enhance>     <!-- Calls the post api --> 
+    <form action="/todos.json" method="post" class="new" use:enhance={{
+        result: processNewTodoResult}}>     <!-- Calls the post api --> 
         <input type="text" name="text" aria-label="Add a todo" placeholder="+ tap to add a todo">
     </form>
 

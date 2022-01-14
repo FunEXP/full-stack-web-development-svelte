@@ -37,7 +37,9 @@ export const api = (request: Request, data?: Record<string, unknown>) => {
             break;
     }
 
-    if (request.method.toUpperCase() !== "GET"){
+    // Only when JS is disabled
+    if (request.method.toUpperCase() !== "GET" && 
+        request.headers.accept != "application/json"){
         return {
             status: 303, //to redirect back to the same page
             headers: {
