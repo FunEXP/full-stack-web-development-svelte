@@ -5,6 +5,8 @@ tasks:
     command: |
       export HMR_HOST=`gp url 3000` 
       npm run dev
+    env:
+      DATABASE_URL: postgres://gitpod@locolhost/todos
 
 ports:
   - port: 3000
@@ -15,6 +17,7 @@ ports:
 vscode:
   extensions:
     - svelte.svelte-vscode
+    - prisma.prisma
 
 github:
   prebuilds:
