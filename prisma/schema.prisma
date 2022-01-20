@@ -1,0 +1,22 @@
+// Learn more about this file in the docs: prisma schema https://www.prisma.io/docs/concepts/components/prisma-schema
+
+datasource db {
+    provider = "postgresql"
+    // "postgres://gitpod@locolhost/todos" This path will only work on dev
+    url = env("DATABASE_URL")
+}
+
+// prisma will generate JS/TS client for us to interact with the db
+// binaryTargets: will generate base on the current OS
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native"]  
+}
+
+model Todo {
+    uid String @id @default(cuid())
+    created_at DateTime
+    text String
+    done Boolean
+}
+
